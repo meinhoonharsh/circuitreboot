@@ -1,0 +1,134 @@
+{% set pagetitle = post.post_name %}
+{% extends "layout.html" %}
+{% block body %}
+<style>
+  pre {
+            overflow-x: auto;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+         }
+
+  .tab{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .tablink{
+    background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  margin:10px 1px 2px 0px;
+  }
+  .tabcontent{
+    width:100%;
+    margin-top: 10px;
+  }
+.tablink:hover {
+  background-color: #777;
+}
+</style>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static',filename='img/post-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{post.post_name}}</h1>
+            <h2 class="subheading">{{post.post_subtitle}}</h2>
+            <span class="meta">Posted by
+              <a href="#">{{post.author}}</a>
+              on {{post.datetime}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto tab">
+          <iframe width="100%" id="video" height="inherit" src="https://www.youtube.com/embed/n-OkenqykhY" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+          <button class="tablink" onclick="openPage('OverView', this, 'red')" id="defaultOpen">Overview</button>
+          <button class="tablink" onclick="openPage('Files', this, 'green')">Files</button>
+          <button class="tablink" onclick="openPage('Discussion', this, 'blue')">Discussion</button>
+          <button class="tablink" onclick="openPage('Announcements', this, 'orange')">Announcements</button>
+          
+          <div id="OverView" class="tabcontent">
+            <samp><pre>{{post.post_content | safe}}</pre></samp>
+          </div>
+          
+          <div id="Files" class="tabcontent">
+              <h3>Circuit Diagram</h3>
+              <img width="100%" src="{{url_for('static',filename='img/uploaded_files/fritzing/'+post.fritzing_img)}}">
+              <hr>
+              <h3>Schematic Diagram</h3>
+              <img width="100%" src="{{url_for('static',filename='img/uploaded_files/schematic/'+post.schematic_img)}}">
+          </div>
+          
+          <div id="Discussion" class="tabcontent">
+            <h3>Discussion</h3>
+            <p>......</p>
+          </div>
+          
+          <div id="Announcements" class="tabcontent">
+            <h3>Announcement</h3>
+            <p>No Announcements for this Post.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var width = $("#video").width()
+    
+    $("#video").height(width/1.67 )
+    
+  })
+  
+  function openPage(pageName, elmnt, color) {
+      // Hide all elements with class="tabcontent" by default */
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Remove the background color of all tablinks/buttons
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+
+      // Show the specific tab content
+      document.getElementById(pageName).style.display = "block";
+
+      // Add the specific color to the button used to open the tab content
+      elmnt.style.backgroundColor = "#0085a1";
+    }
+    
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+
+</script>
+  {% endblock %}
