@@ -13,7 +13,7 @@ $dbname = "blog";
 else{
 $servername = "localhost";
 $username = "harshvis_123";
-$password = "thisismypassword";
+$password = "thisismypassword782";
 $dbname = "harshvis_circuitreboot";
 }
 // Create connection
