@@ -1,6 +1,6 @@
 <?php
 
-$connway ="localhost";
+$connway ="localhostabc";
 
 
 
@@ -12,9 +12,9 @@ $dbname = "blog";
 }
 else{
 $servername = "localhost";
-$username = "id1959203_harsh";
-$password = "tinyurl.com/harshpro";
-$dbname = "id1959203_test";
+$username = "harshvis_123";
+$password = "thisismypassword";
+$dbname = "harshvis_circuitreboot";
 }
 // Create connection
 
