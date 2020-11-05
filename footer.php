@@ -56,6 +56,16 @@
 
         // Show the navbar when the page is scrolled up
         var MQL = 992;
+        console.log(screen.width)
+        if(screen.width < MQL){
+
+        $("#logo").attr("src", "static/img/logo-black.png");
+        console.log("If coode");
+        }else{
+
+        $("#logo").attr("src", "static/img/logo.png");
+        console.log("Else coode");
+        }
 
         //primary navigation slide-in effect
         if ($(window).width() > MQL) {
