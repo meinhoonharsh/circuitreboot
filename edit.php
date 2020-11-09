@@ -2,8 +2,6 @@
   <?php
 include "connection.php";
 if ($_GET['id'] != 0){
-      $sql = "SELECT * FROM posts WHERE id = '".$_GET['id']."'";
-      $result = mysqli_query($conn, $sql);
 
 
       if(isset($_POST['submit'])){
@@ -34,6 +32,8 @@ if ($_GET['id'] != 0){
         }
 
 
+      $sql = "SELECT * FROM posts WHERE id = '".$_GET['id']."'";
+      $result = mysqli_query($conn, $sql);
       if (mysqli_num_rows($result) > 0) {
         // output data of each row
         $row = mysqli_fetch_assoc($result);

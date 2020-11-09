@@ -46,7 +46,7 @@
     }else{
       $nextpage = 1;
     }
-    echo "nextpage :".$nextpage;
+    // echo "nextpage :".$nextpage;
     if (mysqli_num_rows($result) > 0) {
       // output data of each row
       while($row = mysqli_fetch_assoc($result)) {
